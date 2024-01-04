@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Atum",
-    "img": "images/atum.png",
+    "img": "./src/assets/atum.png",
     "price": [14.49, 19.99, 29.99],
     "sizes": ["4 fatias", "6 fatias", "8 fatias"],
     "description": "Molho, muçarela, atum, cebola fatiada e orégano."
@@ -10,7 +10,7 @@
   {
     "id": 2,
     "name": "Calabresa",
-    "img": "images/calabresa.png",
+    "img": "./src/assets/calabresa.png",
     "price": [14.5, 19.99, 27.99],
     "sizes": ["4 fatias", "6 fatias", "8 fatias"],
     "description": "Molho, muçarela, calabresa fatiada, cebola fatiada e orégano."
@@ -18,7 +18,7 @@
   {
     "id": 3,
     "name": "Camarão c/ catupiry",
-    "img": "images/camarao-c-catupiry.png",
+    "img": "./src/assets/camarao-c-catupiry.png",
     "price": [16.5, 25.99, 32.99],
     "sizes": ["4 fatias", "6 fatias", "8 fatias"],
     "description": "Molho, muçarela, camarões ao molho, catupiry e orégano."
@@ -26,7 +26,7 @@
   {
     "id": 4,
     "name": "4 Queijos",
-    "img": "images/4queijos.png",
+    "img": "./src/assets/4queijos.png",
     "price": [15.5, 19.99, 47.99],
     "sizes": ["4 fatias", "6 fatias", "8 fatias"],
     "description": "Molho, muçarela, provolone, parmesão, catupiry e orégano."
@@ -34,7 +34,7 @@
   {
     "id": 5,
     "name": "Frango c/ catupiry",
-    "img": "images/frango-catupiry.png",
+    "img": "./src/assets/frango-catupiry.png",
     "price": [14.5, 19.99, 26.99],
     "sizes": ["4 fatias", "6 fatias", "8 fatias"],
     "description": "Molho, muçarela, frango desfiado, catupiry e orégano."
@@ -42,7 +42,7 @@
   {
     "id": 6,
     "name": "Milho c/ bacon",
-    "img": "images/milho-com-bacon.png",
+    "img": "./src/assets/milho-com-bacon.png",
     "price": [14.5, 23.99, 42.99],
     "sizes": ["4 fatias", "6 fatias", "8 fatias"],
     "description": "Molho, muçarela, milho, bacon, parmesão e orégano."
@@ -50,7 +50,7 @@
   {
     "id": 7,
     "name": "Moda da casa",
-    "img": "images/moda-da-casa.png",
+    "img": "./src/assets/moda-da-casa.png",
     "price": [14.5, 23.99, 38.99],
     "sizes": ["4 fatias", "6 fatias", "8 fatias"],
     "description": "Molho, muçarela, milho, bacon, parmesão e orégano."
@@ -58,7 +58,7 @@
   {
     "id": 8,
     "name": "Muçarela",
-    "img": "images/muçarela.png",
+    "img": "./src/assets/muçarela.png",
     "price": [14.5, 23.99, 32.99],
     "sizes": ["4 fatias", "6 fatias", "8 fatias"],
     "description": "Molho, muçarela, milho, bacon, parmesão e orégano."
@@ -66,7 +66,7 @@
   {
     "id": 9,
     "name": "Napolitana",
-    "img": "images/napolitana.png",
+    "img": "./src/assets/napolitana.png",
     "price": [14.5, 26.99, 33.99],
     "sizes": ["4 fatias", "6 fatias", "8 fatias"],
     "description": "Molho, muçarela, tomates em rodelas, parmesão, azeitonas e orégano."
@@ -74,7 +74,7 @@
   {
     "id": 10,
     "name": "Pepperoni",
-    "img": "images/pepperoni.png",
+    "img": "./src/assets/pepperoni.png",
     "price": [14.5, 21.99, 28.99],
     "sizes": ["4 fatias", "6 fatias", "8 fatias"],
     "description": "Molho, salame pepperoni fatiado e orégano."
@@ -82,7 +82,7 @@
   {
     "id": 11,
     "name": "Portuguesa",
-    "img": "images/portuguesa.png",
+    "img": "./src/assets/portuguesa.png",
     "price": [15.5, 26.99, 35.99],
     "sizes": ["4 fatias", "6 fatias", "8 fatias"],
     "description": "Molho, muçarela, presunto, calabresa, ovos, cebola, azeitonas e orégano."
@@ -90,7 +90,7 @@
   {
     "id": 12,
     "name": "Brócolis c/ catupiry",
-    "img": "images/brocolis-com-catupiry.png",
+    "img": "./src/assets/brocolis-com-catupiry.png",
     "price": [14.5, 22.99, 24.99],
     "sizes": ["4 fatias", "6 fatias", "8 fatias"],
     "description": "Molho, muçarela, brócolis refogado com azeite de oliva e alho, catupiry e orégano."
@@ -98,7 +98,7 @@
   {
     "id": 13,
     "name": "Chocolate",
-    "img": "images/chocolate.png",
+    "img": "./src/assets/chocolate.png",
     "price": [14.5, 24.99, 29.99],
     "sizes": ["4 fatias", "6 fatias", "8 fatias"],
     "description": "Chocolate ao leite."
@@ -106,7 +106,7 @@
   {
     "id": 14,
     "name": "M&M's",
-    "img": "images/chocolate-c-mm.png",
+    "img": "./src/assets/chocolate-c-mm.png",
     "price": [14.5, 22.99, 32.99],
     "sizes": ["4 fatias", "6 fatias", "8 fatias"],
     "description": "Chocolate e M&M's."
@@ -114,7 +114,7 @@
   {
     "id": 15,
     "name": "Chocolate c/ morango",
-    "img": "images/chocolate-com-morango.png",
+    "img": "./src/assets/chocolate-com-morango.png",
     "price": [15.5, 23.99, 34.99],
     "sizes": ["4 fatias", "6 fatias", "8 fatias"],
     "description": "Chocolate ao leite e morango"
@@ -122,7 +122,7 @@
   {
     "id": 16,
     "name": "Banana c/ doce de Leite",
-    "img": "images/banan-doce-de-leite.png",
+    "img": "./src/assets/banan-doce-de-leite.png",
     "price": [16.5, 24.99, 29.99],
     "sizes": ["4 fatias", "6 fatias", "8 fatias"],
     "description": "Banana, doce de leite, açúcar e canela."
