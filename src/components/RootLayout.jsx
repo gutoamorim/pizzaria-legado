@@ -4,11 +4,10 @@ import Header from "./Header";
 export default function RootLayout() {
   return (
     <>
-      <Header />
-      <main className="bg-orange-100">
+      <Header className="flex-shrink-0" />
+      <main className="bg-orange-100 flex-1">
         <Outlet />
       </main>
-      <footer>Feito com React Router Dom</footer>
     </>
   );
 }
