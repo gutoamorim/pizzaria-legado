@@ -1,3 +1,10 @@
+import Header from "./Header";
+
 export default function Home() {
-  return <div>Essa é a home</div>;
+  return (
+    <>
+      <Header />
+      Essa é a home
+    </>
+  );
 }

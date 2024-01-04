@@ -1,3 +1,10 @@
+import Header from "./Header";
+
 export default function Pizzas() {
-  return <div>Cardápio de pizzas</div>;
+  return (
+    <>
+      <Header />
+      <section>Cardápio de pizzas</section>
+    </>
+  );
 }
