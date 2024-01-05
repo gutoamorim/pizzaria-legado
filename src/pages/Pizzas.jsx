@@ -2,9 +2,13 @@ import pizzas from "../database.json";
 import Card from "../components/Card";
 import Cart from "../components/Cart";
 import PizzaModal from "../components/PizzaModal";
+import { useState } from "react";
 
-console.log(pizzas);
 export default function Pizzas() {
+  const [modal, setModal] = useState(false);
+  const [cart, setCart] = useState([]);
+  const [pizzaItem, setPizzaItem] = useState(null);
+
   return (
     <>
       <section className="flex gap-0.5">
@@ -21,15 +25,18 @@ export default function Pizzas() {
                 })}
                 title={pizza.name}
                 description={pizza.description}
+                setModal={setModal}
+                pizzaItem={pizza}
+                setPizzaItem={setPizzaItem}
               />
             ))}
           </div>
         </div>
         {/* <div>
-        <Cart />
-      </div> */}
+          <Cart />
+        </div> */}
       </section>
-      <PizzaModal />
+      <PizzaModal modal={modal} setModal={setModal} pizzaItem={pizzaItem} />
     </>
   );
 }
