@@ -32,9 +32,9 @@ export default function Pizzas() {
             ))}
           </div>
         </div>
-        {/* <div>
+        <div>
           <Cart />
-        </div> */}
+        </div>
       </section>
       <PizzaModal modal={modal} setModal={setModal} pizzaItem={pizzaItem} />
     </>
