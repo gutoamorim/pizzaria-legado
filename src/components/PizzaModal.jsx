@@ -1,22 +1,45 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 export default function PizzaModal({ modal, setModal, pizzaItem }) {
   if (!modal) return null;
 
-  const { id, img, name, description, price } = pizzaItem;
-  const [quantity, setQuantity] = useState(1);
+  const defaultOrder = {
+    img: pizzaItem.img,
+    name: pizzaItem.name,
+    description: pizzaItem.description,
+    size: pizzaItem.sizes[2],
+    price: pizzaItem.price[2],
+    quantity: 1,
+    total: pizzaItem.price[2],
+  };
 
-  const p = useRef();
-  const m = useRef();
-  const g = useRef();
+  const [order, setOrder] = useState(defaultOrder);
+
+  function handlePrice() {
+    const total = order.price * order.quantity;
+    setOrder((state) => {
+      return {
+        ...state,
+        total: total,
+      };
+    });
+  }
 
   function handleSize(e) {
     const sizes = document.querySelectorAll("#sizes div");
-    sizes.forEach((size) => {
+    sizes.forEach((size, index) => {
       size.classList.remove("bg-orange-200", "bg-orange-300");
+      console.log(size);
       if (size === e.target) {
         size.classList.add("bg-orange-300");
-        console.log(size.innerHTML);
+        setOrder((state) => {
+          const updatedOrder = {
+            ...state,
+            price: pizzaItem.price[index],
+            total: pizzaItem.price[index] * order.quantity,
+          };
+          return updatedOrder;
+        });
       } else {
         size.classList.add("bg-orange-200");
       }
@@ -24,38 +47,50 @@ export default function PizzaModal({ modal, setModal, pizzaItem }) {
   }
 
   function handleQuantity(e) {
-    console.log(e.target.id);
+    let modalQuantity = order.quantity;
+    let price = order.price;
+    if (e.target.id === "add") {
+      modalQuantity++;
+    } else if (e.target.id === "subtract") {
+      modalQuantity > 1 && modalQuantity--;
+    }
+
+    setOrder((state) => {
+      const updatedOrder = {
+        ...state,
+        quantity: modalQuantity,
+        total: modalQuantity * price,
+      };
+      return updatedOrder;
+    });
   }
 
   return (
     <div className="fixed h-full w-full top-0 left-0 bg-black/50 flex items-center justify-center">
       <div className="flex gap-10 bg-orange-100 p-5 rounded max-w-3xl justify-center">
-        <img src={img} alt="" className="max-w-80" />
+        <img src={order.img} alt="" className="max-w-80" />
 
         <div>
-          <h1 className="text-2xl font-medium">{name}</h1>
+          <h1 className="text-2xl font-medium">{order.name}</h1>
 
-          <p className="mb-4">{description}</p>
+          <p className="mb-4">{order.description}</p>
 
           <span className="text-orange-400">TAMANHO</span>
           <div className="flex mb-4" id="sizes">
             <div
-              className="bg-orange-200 p-2 rounded-tl-xl rounded-bl-xl cursor-pointer hover:bg-orange-300"
-              ref={p}
+              className="bg-orange-200 p-2 cursor-pointer rounded-tl-xl rounded-bl-xl hover:bg-orange-300"
               onClick={handleSize}
             >
-              <p>Pequena</p> ({pizzaItem.sizes[0]})
+              PEQUENA
             </div>
             <div
               className="bg-orange-200 p-2 cursor-pointer hover:bg-orange-300"
-              ref={m}
               onClick={handleSize}
             >
               MÉDIO
             </div>
             <div
               className="bg-orange-300 p-2 rounded-tr-xl rounded-br-xl cursor-pointer hover:bg-orange-300"
-              ref={g}
               onClick={handleSize}
             >
               GRANDE
@@ -65,16 +100,20 @@ export default function PizzaModal({ modal, setModal, pizzaItem }) {
           <span className="text-orange-400">PREÇO</span>
           <div className="flex items-center gap-5 mb-10">
             <span className="text-3xl">
-              {price[2].toLocaleString("pt-BR", {
+              {order.total.toLocaleString("pt-BR", {
                 style: "currency",
                 currency: "BRL",
               })}
             </span>
             <div className="flex">
-              <div className="bg-orange-200 p-2 rounded-tl-xl rounded-bl-xl cursor-pointer hover:bg-orange-300">
+              <div
+                id="subtract"
+                className="bg-orange-200 p-2 rounded-tl-xl rounded-bl-xl cursor-pointer hover:bg-orange-300"
+                onClick={handleQuantity}
+              >
                 -
               </div>
-              <div className="bg-orange-200 p-2">{quantity}</div>
+              <div className="bg-orange-200 p-2">{order.quantity}</div>
               <div
                 id="add"
                 className="bg-orange-200 p-2 rounded-tr-xl rounded-br-xl cursor-pointer hover:bg-orange-300"
