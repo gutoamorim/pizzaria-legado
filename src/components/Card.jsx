@@ -14,7 +14,7 @@ export default function Card({
 
   return (
     <div
-      className="max-w-60 bg-orange-50 p-4 rounded-lg cursor-pointer"
+      className="max-w-60 bg-orange-50 p-4 rounded-lg cursor-pointer hover:shadow-lg hover:shadow-orange-600/50"
       onClick={handleModal}
     >
       <img src={img} alt="" />
