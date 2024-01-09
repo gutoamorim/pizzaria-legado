@@ -12,7 +12,7 @@ export default function PizzaModal({
   const defaultOrder = {
     id: `P${pizzaItem.id}G`,
     img: pizzaItem.img,
-    name: pizzaItem.name,
+    name: `${pizzaItem.name} (G)`,
     description: pizzaItem.description,
     size: pizzaItem.sizes[2],
     price: pizzaItem.price[2],

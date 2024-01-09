@@ -1,6 +1,9 @@
 export default function Cart({ cart, setCart }) {
-  // const totalCart = cart.map((item) => item.total).reduce((a, b) => a + b, 0);
-  // console.log(totalCart);
+  const pizzas = cart.map((item) => item.price).reduce((a, b) => a + b, 0);
+  const taxa = 4.99;
+  const subTotal = pizzas + taxa;
+  const desconto = subTotal * 0.1;
+  const total = subTotal - desconto;
 
   return (
     <div className="w-64 bg-orange-50 p-4 transition">
@@ -35,23 +38,48 @@ export default function Cart({ cart, setCart }) {
 
       <div className="flex items-center justify-between border-t border-orange-200 mt-4">
         <p>Pizzas</p>
-        <span>R$ 39,99</span>
+        <span>
+          {pizzas.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })}
+        </span>
       </div>
       <div className="flex items-center justify-between border-t border-orange-200 mt-1">
         <p>Taxa de entrega</p>
-        <span>R$ 4,99</span>
+        <span>
+          {taxa.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })}
+        </span>
       </div>
       <div className="flex items-center justify-between border-t border-orange-200 mt-1">
         <p>Subtotal</p>
-        <span>R$ 44,98</span>
+        <span>
+          {subTotal.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })}
+        </span>
       </div>
       <div className="flex items-center justify-between border-t border-orange-200 mt-1">
         <p>Desconto</p>
-        <span>R$ 4,49</span>
+        <span>
+          {desconto.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })}
+        </span>
       </div>
       <div className="flex items-center justify-between border-t border-orange-200 mt-1 py-4 text-2xl font-medium">
         <p>Total</p>
-        <span>R$ 40,48</span>
+        <span>
+          {total.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+          })}
+        </span>
       </div>
       <button className="bg-orange-200 text-orange-500 font-medium py-2 px-4 rounded-xl w-full hover:bg-orange-300 hover:text-orange-600 transition">
         Finalizar compra
