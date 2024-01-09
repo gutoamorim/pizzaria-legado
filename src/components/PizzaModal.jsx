@@ -1,9 +1,16 @@
 import { useState } from "react";
 
-export default function PizzaModal({ modal, setModal, pizzaItem }) {
+export default function PizzaModal({
+  modal,
+  setModal,
+  pizzaItem,
+  cart,
+  setCart,
+}) {
   if (!modal) return null;
 
   const defaultOrder = {
+    id: `P${pizzaItem.id}G`,
     img: pizzaItem.img,
     name: pizzaItem.name,
     description: pizzaItem.description,
@@ -15,26 +22,19 @@ export default function PizzaModal({ modal, setModal, pizzaItem }) {
 
   const [order, setOrder] = useState(defaultOrder);
 
-  function handlePrice() {
-    const total = order.price * order.quantity;
-    setOrder((state) => {
-      return {
-        ...state,
-        total: total,
-      };
-    });
-  }
-
   function handleSize(e) {
     const sizes = document.querySelectorAll("#sizes div");
     sizes.forEach((size, index) => {
       size.classList.remove("bg-orange-200", "bg-orange-300");
-      console.log(size);
       if (size === e.target) {
         size.classList.add("bg-orange-300");
+        const sizeId =
+          (index === 0 && "P") || (index === 1 && "M") || (index === 2 && "G");
         setOrder((state) => {
           const updatedOrder = {
             ...state,
+            id: `P${pizzaItem.id}${sizeId}`,
+            name: `${pizzaItem.name} (${sizeId})`,
             price: pizzaItem.price[index],
             total: pizzaItem.price[index] * order.quantity,
           };
@@ -63,6 +63,22 @@ export default function PizzaModal({ modal, setModal, pizzaItem }) {
       };
       return updatedOrder;
     });
+  }
+
+  function handleCart() {
+    setCart((state) => {
+      let updatedCart = state;
+      const itemCart = state.findIndex((item) => item.id === order.id);
+      if (itemCart !== -1) {
+        Object.assign(updatedCart[itemCart], {
+          quantity: order.quantity,
+        });
+      } else {
+        updatedCart = [order, ...state];
+      }
+      return updatedCart;
+    });
+    setModal((state) => !state);
   }
 
   return (
@@ -125,7 +141,10 @@ export default function PizzaModal({ modal, setModal, pizzaItem }) {
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="bg-orange-300 px-5 py-2 rounded-xl cursor-pointer hover:bg-orange-400">
+            <div
+              className="bg-orange-300 px-5 py-2 rounded-xl cursor-pointer hover:bg-orange-400"
+              onClick={handleCart}
+            >
               Adicionar ao carrinho
             </div>
             <div

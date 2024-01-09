@@ -1,30 +1,38 @@
-import pizza from "../assets/camarao-c-catupiry.png";
+export default function Cart({ cart, setCart }) {
+  // const totalCart = cart.map((item) => item.total).reduce((a, b) => a + b, 0);
+  // console.log(totalCart);
 
-export default function Cart() {
   return (
-    <div className="w-80 bg-orange-50 p-4">
+    <div className="w-64 bg-orange-50 p-4 transition">
       <h1 className="text-xl font-medium">Carrinho</h1>
-      <div className="flex justify-between items-center mt-2">
-        <div className="w-10">
-          <img src={pizza} alt="" />
-        </div>
-        <p>Camarão com catupiry</p>
-        <div className="flex">
+      {cart &&
+        cart.map((item, index) => (
           <div
-            id="subtract"
-            className="bg-orange-200 px-2 rounded-tl-xl rounded-bl-xl cursor-pointer hover:bg-orange-300"
+            className="flex justify-between items-center mt-2 gap-2"
+            key={index}
           >
-            -
+            <div className="w-10">
+              <img src={item.img} alt="" />
+            </div>
+            <p className="flex-1">{item.name}</p>
+            <div className="flex">
+              <div
+                id="subtract"
+                className="bg-orange-200 px-2 rounded-tl-xl rounded-bl-xl cursor-pointer hover:bg-orange-300"
+              >
+                -
+              </div>
+              <div className="bg-orange-200 px-2">{item.quantity}</div>
+              <div
+                id="add"
+                className="bg-orange-200 px-2 rounded-tr-xl rounded-br-xl cursor-pointer hover:bg-orange-300"
+              >
+                +
+              </div>
+            </div>
           </div>
-          <div className="bg-orange-200 px-2">1</div>
-          <div
-            id="add"
-            className="bg-orange-200 px-2 rounded-tr-xl rounded-br-xl cursor-pointer hover:bg-orange-300"
-          >
-            +
-          </div>
-        </div>
-      </div>
+        ))}
+
       <div className="flex items-center justify-between border-t border-orange-200 mt-4">
         <p>Pizzas</p>
         <span>R$ 39,99</span>

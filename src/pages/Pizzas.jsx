@@ -11,10 +11,10 @@ export default function Pizzas() {
 
   return (
     <>
-      <section className="flex gap-0.5">
-        <div className="container m-auto pt-4">
-          <h1 className="text-4xl font-bold text-center mb-4">Pizzas</h1>
-          <div className="flex flex-wrap gap-5">
+      <section className="gap-0.5">
+        <h1 className="text-4xl font-bold text-center mb-4">Pizzas</h1>
+        <div className="flex gap-2 container m-auto pt-4">
+          <div className="flex flex-wrap gap-3">
             {pizzas.map((pizza) => (
               <Card
                 key={pizza.id}
@@ -31,12 +31,16 @@ export default function Pizzas() {
               />
             ))}
           </div>
-        </div>
-        <div>
-          <Cart />
+          <div>{cart.length > 0 && <Cart cart={cart} setCart={setCart} />}</div>
         </div>
       </section>
-      <PizzaModal modal={modal} setModal={setModal} pizzaItem={pizzaItem} />
+      <PizzaModal
+        modal={modal}
+        setModal={setModal}
+        pizzaItem={pizzaItem}
+        setCart={setCart}
+        cart={cart}
+      />
     </>
   );
 }
