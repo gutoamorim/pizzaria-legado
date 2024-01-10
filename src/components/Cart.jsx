@@ -1,9 +1,27 @@
 export default function Cart({ cart, setCart }) {
-  const pizzas = cart.map((item) => item.price).reduce((a, b) => a + b, 0);
+  const pizzas = cart
+    .map((item) => item.price * item.quantity)
+    .reduce((a, b) => a + b, 0);
   const taxa = 4.99;
   const subTotal = pizzas + taxa;
   const desconto = subTotal * 0.1;
   const total = subTotal - desconto;
+
+  function handleQuantity(e, index) {
+    let cartQuantity = cart[index].quantity;
+
+    if (e.target.id === "subtract") {
+      cartQuantity--;
+    } else if (e.target.id === "add") {
+      cartQuantity++;
+    }
+
+    const updateCart = cart;
+    Object.assign(updateCart[index], { quantity: cartQuantity });
+
+    setCart(updateCart);
+    console.log(cartQuantity);
+  }
 
   return (
     <div className="w-64 bg-orange-50 p-4 transition">
@@ -22,6 +40,7 @@ export default function Cart({ cart, setCart }) {
               <div
                 id="subtract"
                 className="bg-orange-200 px-2 rounded-tl-xl rounded-bl-xl cursor-pointer hover:bg-orange-300"
+                onClick={(e) => handleQuantity(e, index)}
               >
                 -
               </div>
@@ -29,6 +48,7 @@ export default function Cart({ cart, setCart }) {
               <div
                 id="add"
                 className="bg-orange-200 px-2 rounded-tr-xl rounded-br-xl cursor-pointer hover:bg-orange-300"
+                onClick={(e) => handleQuantity(e, index)}
               >
                 +
               </div>
