@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../contexts/GlobalContext";
+import UpdateQuantity from "./UpdateQuantity";
 
 export default function Cart() {
   const { cart, setCart } = useContext(GlobalContext);
-  const [itemsCart, setItemsCart] = useState(cart ? cart : []);
+  const [order, setOrder] = useState(cart);
 
-  const pizzas = itemsCart
+  const pizzas = cart
     .map((item) => item.price * item.quantity)
     .reduce((a, b) => a + b, 0);
   const taxa = 4.99;
@@ -14,22 +15,24 @@ export default function Cart() {
   const total = subTotal - desconto;
 
   function handleQuantity(e, index, item) {
-    if (e.target.id === "subtract") {
-      setItemsCart((state) => (state[index].quantity = item.quantity++));
-    } else if (e.target.id === "add") {
-      setItemsCart((state) => (state[index].quantity = item.quantity++));
-    }
-
-    // Object.assign(itemsCart[index].quantity, updateCart);
-    // setItemsCart(updateCart);
-    // setCart(updateCart);
+    setCart((state) => {
+      const updatedOrder = state;
+      let orderQuantity = item.quantity;
+      if (e.target.id === "add") {
+        console.log("somar");
+        orderQuantity++;
+        Object.assign(updatedOrder[index], { quantity: orderQuantity });
+      }
+      // setCart(updatedOrder);
+      return updatedOrder;
+    });
   }
 
   return (
     <div className="w-64 bg-orange-50 p-4 transition">
       <h1 className="text-xl font-medium">Carrinho</h1>
-      {itemsCart &&
-        itemsCart.map((item, index) => (
+      {cart &&
+        cart.map((item, index) => (
           <div
             className="flex justify-between items-center mt-2 gap-2"
             key={index}
@@ -38,7 +41,7 @@ export default function Cart() {
               <img src={item.img} alt="" />
             </div>
             <p className="flex-1">{item.name}</p>
-            <div className="flex">
+            {/* <div className="flex">
               <div
                 id="subtract"
                 className="bg-orange-200 px-2 rounded-tl-xl rounded-bl-xl cursor-pointer hover:bg-orange-300"
@@ -54,7 +57,8 @@ export default function Cart() {
               >
                 +
               </div>
-            </div>
+            </div> */}
+            <UpdateQuantity quantity={item.quantity} />
           </div>
         ))}
 
