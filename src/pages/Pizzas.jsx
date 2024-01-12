@@ -2,12 +2,13 @@ import pizzas from "../database.json";
 import Card from "../components/Card";
 import Cart from "../components/Cart";
 import PizzaModal from "../components/PizzaModal";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { GlobalContext } from "../contexts/GlobalContext";
 
 export default function Pizzas() {
   const [modal, setModal] = useState(false);
-  const [cart, setCart] = useState([]);
   const [pizzaItem, setPizzaItem] = useState(null);
+  const { cart } = useContext(GlobalContext);
 
   return (
     <>
@@ -31,16 +32,10 @@ export default function Pizzas() {
               />
             ))}
           </div>
-          <div>{cart.length > 0 && <Cart cart={cart} setCart={setCart} />}</div>
+          <div>{cart.length > 0 && <Cart />}</div>
         </div>
       </section>
-      <PizzaModal
-        modal={modal}
-        setModal={setModal}
-        pizzaItem={pizzaItem}
-        setCart={setCart}
-        cart={cart}
-      />
+      <PizzaModal modal={modal} setModal={setModal} pizzaItem={pizzaItem} />
     </>
   );
 }

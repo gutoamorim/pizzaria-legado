@@ -1,12 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { GlobalContext } from "../contexts/GlobalContext";
 
-export default function PizzaModal({
-  modal,
-  setModal,
-  pizzaItem,
-  cart,
-  setCart,
-}) {
+export default function PizzaModal({ modal, setModal, pizzaItem }) {
   if (!modal) return null;
 
   const defaultOrder = {
@@ -21,6 +16,7 @@ export default function PizzaModal({
   };
 
   const [order, setOrder] = useState(defaultOrder);
+  const { setCart } = useContext(GlobalContext);
 
   function handleSize(e) {
     const sizes = document.querySelectorAll("#sizes div");
