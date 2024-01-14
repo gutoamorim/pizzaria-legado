@@ -4,11 +4,11 @@ export default function Card({
   description,
   price,
   setModal,
-  pizzaItem,
-  setPizzaItem,
+  item,
+  setItem,
 }) {
   function handleModal() {
-    setPizzaItem(pizzaItem);
+    setItem(item);
     setModal((state) => !state);
   }
 

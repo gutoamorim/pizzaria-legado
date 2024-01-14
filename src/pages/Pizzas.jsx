@@ -1,4 +1,4 @@
-import pizzas from "../database.json";
+import menu from "../database.json";
 import Card from "../components/Card";
 import Cart from "../components/Cart";
 import PizzaModal from "../components/PizzaModal";
@@ -16,7 +16,7 @@ export default function Pizzas() {
         <h1 className="text-4xl font-bold text-center mb-4">Pizzas</h1>
         <div className="flex gap-2 container m-auto pt-4">
           <div className="flex flex-wrap gap-3">
-            {pizzas.map((pizza) => (
+            {menu.map((pizza) => (
               <Card
                 key={pizza.id}
                 img={pizza.img}
@@ -27,8 +27,8 @@ export default function Pizzas() {
                 title={pizza.name}
                 description={pizza.description}
                 setModal={setModal}
-                pizzaItem={pizza}
-                setPizzaItem={setPizzaItem}
+                item={pizza}
+                setItem={setPizzaItem}
               />
             ))}
           </div>

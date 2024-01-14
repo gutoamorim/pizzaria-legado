@@ -4,7 +4,6 @@ import UpdateQuantity from "./UpdateQuantity";
 
 export default function Cart() {
   const { cart, setCart } = useContext(GlobalContext);
-  const [order, setOrder] = useState(cart);
 
   const pizzas = cart
     .map((item) => item.price * item.quantity)
@@ -14,17 +13,17 @@ export default function Cart() {
   const desconto = subTotal * 0.1;
   const total = subTotal - desconto;
 
-  function handleQuantity(e, index, item) {
+  function handleQuantity(e, itemQuantity, index) {
     setCart((state) => {
-      const updatedOrder = state;
-      let orderQuantity = item.quantity;
+      const updatedCart = state;
+      let quantityItems = itemQuantity;
       if (e.target.id === "add") {
-        console.log("somar");
-        orderQuantity++;
-        Object.assign(updatedOrder[index], { quantity: orderQuantity });
+        quantityItems++;
+      } else if (e.target.id === "subtract") {
+        quantityItems--;
       }
-      // setCart(updatedOrder);
-      return updatedOrder;
+      Object.assign(updatedCart[index], { quantity: quantityItems });
+      return [...updatedCart];
     });
   }
 
@@ -41,24 +40,10 @@ export default function Cart() {
               <img src={item.img} alt="" />
             </div>
             <p className="flex-1">{item.name}</p>
-            {/* <div className="flex">
-              <div
-                id="subtract"
-                className="bg-orange-200 px-2 rounded-tl-xl rounded-bl-xl cursor-pointer hover:bg-orange-300"
-                onClick={(e) => handleQuantity(e, index, item)}
-              >
-                -
-              </div>
-              <div className="bg-orange-200 px-2">{item.quantity}</div>
-              <div
-                id="add"
-                className="bg-orange-200 px-2 rounded-tr-xl rounded-br-xl cursor-pointer hover:bg-orange-300"
-                onClick={(e) => handleQuantity(e, index, item)}
-              >
-                +
-              </div>
-            </div> */}
-            <UpdateQuantity quantity={item.quantity} />
+            <UpdateQuantity
+              quantity={item.quantity}
+              handleQuantity={(e) => handleQuantity(e, item.quantity, index)}
+            />
           </div>
         ))}
 
