@@ -75,7 +75,7 @@ export default function PizzaModal({ modal, setModal, pizzaItem }) {
       }
       return updatedCart;
     });
-    // setModal((state) => !state);
+    setModal((state) => !state);
   }
 
   return (

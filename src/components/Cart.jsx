@@ -19,10 +19,15 @@ export default function Cart() {
       let quantityItems = itemQuantity;
       if (e.target.id === "add") {
         quantityItems++;
+        Object.assign(updatedCart[index], { quantity: quantityItems });
       } else if (e.target.id === "subtract") {
-        quantityItems--;
+        if (quantityItems > 1) {
+          quantityItems--;
+          Object.assign(updatedCart[index], { quantity: quantityItems });
+        } else {
+          updatedCart.splice(index, 1);
+        }
       }
-      Object.assign(updatedCart[index], { quantity: quantityItems });
       return [...updatedCart];
     });
   }
